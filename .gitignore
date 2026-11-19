@@ -1,0 +1,19 @@
+__pycache__/
+*.py[cod]
+.python-version
+.venv/
+venv*/
+envs/
+
+# experiment artefacts (regenerate with scripts/)
+work/
+state/
+models/
+data/*
+!data/README.md
+*.pkl
+*.npz
+*.safetensors
+*.jsonl.tmp
+wandb/
+.DS_Store

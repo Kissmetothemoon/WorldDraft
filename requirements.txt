@@ -1,0 +1,27 @@
+# --- Offline analysis, drafter fine-tuning, and the HF speculative loop ---
+# (the environment used for sd_lex.py / train_dflash.py / all table scripts)
+torch==2.8.0
+transformers==4.57.3
+triton==3.4.0
+numpy==2.2.6
+pandas==2.3.3
+datasets==4.5.0
+# used by common.py token classification and by the lexicon/segmenter helpers
+regex
+# optional segmenters for word-boundary classification (CJK / Thai / Japanese)
+jieba
+fugashi
+unidic-lite
+pythainlp
+langid
+
+# --- Serving engine benchmark (separate environment) ---
+# engine_lex.py / engine_bench.py / engine_profile.py need a vLLM build that
+# ships the DFlash proposer at vllm/v1/spec_decode/dflash.py. That was
+# vllm==0.31.1rc1.dev253+g7d0b4e57a.cu129 (CUDA 12.9 nightly wheel).
+# Install it per the vLLM docs, e.g.:
+#   pip install --pre "vllm==0.31.1rc1.dev253+g7d0b4e57a.cu129" \
+#       --index-url https://wheels.vllm.ai/nightly/cu129 \
+#       --extra-index-url https://download.pytorch.org/whl/cu129
+# then check:  python -c "import vllm,os;print(os.path.exists(os.path.dirname(vllm.__file__)+'/v1/spec_decode/dflash.py'))"
+# vllm==0.11.0 was used for the earlier baseline engine runs and does *not* ship it.

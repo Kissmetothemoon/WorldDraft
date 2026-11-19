@@ -1,0 +1,36 @@
+cff-version: 1.2.0
+message: "If you use LexDraft, please cite the paper below."
+title: "What Slows Parallel Diffusion Drafters Across Languages?"
+authors:
+  - family-names: Feng
+    given-names: Yuannuo
+    affiliation: Beihang University
+  - family-names: Yao
+    given-names: Wenshuai
+    affiliation: Peking University
+  - family-names: Chen
+    given-names: Yizhe
+    affiliation: Beihang University
+  - family-names: Wong
+    given-names: Ngai
+    affiliation: The University of Hong Kong
+  - family-names: Zhou
+    given-names: Wenyong
+    affiliation: The University of Hong Kong
+  - family-names: Kang
+    given-names: Wang
+    affiliation: Beihang University
+year: 2026
+type: software
+license: MIT
+repository-code: "https://github.com/Kissmetothemoon/LexDraft"
+url: "https://kissmetothemoon.github.io/lexdraft-page/"
+abstract: >-
+  LexDraft adds a training-free, word-bounded continuation prior counted from
+  monolingual text, which reranks and expands block-diffusion (DFlash) drafter
+  candidates before target verification.
+keywords:
+  - speculative decoding
+  - block diffusion drafting
+  - multilingual language models
+  - efficient inference

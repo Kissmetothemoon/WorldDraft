@@ -2,7 +2,7 @@
 
 ## concurrency 1
 
-| lang | AR tok/s | AR draft 0.6B-ml | EAGLE-3 | DFlash public | DFlash public + LexDraft | DFlash ml | DFlash ml + LexDraft | LexDraft gain (pub / ml) |
+| lang | AR tok/s | AR draft 0.6B-ml | EAGLE-3 | DFlash public | DFlash public + WorldDraft | DFlash ml | DFlash ml + WorldDraft | WorldDraft gain (pub / ml) |
 |---|---|---|---|---|---|---|---|---|
 | en | 47 | 1.90x (3.96) | 1.93x (2.66) | 2.80x (4.27) | 2.79x (4.28) | 2.85x (4.32) | 2.83x (4.32) | -0.5% / -0.7% |
 | de | 47 | 1.83x (3.67) | 1.30x (1.66) | 2.00x (2.66) | 2.07x (2.77) | 2.06x (2.76) | 2.12x (2.87) | +3.6% / +2.9% |
@@ -25,7 +25,7 @@
 
 ## concurrency 8
 
-| lang | AR tok/s | AR draft 0.6B-ml | EAGLE-3 | DFlash public | DFlash public + LexDraft | DFlash ml | DFlash ml + LexDraft | LexDraft gain (pub / ml) |
+| lang | AR tok/s | AR draft 0.6B-ml | EAGLE-3 | DFlash public | DFlash public + WorldDraft | DFlash ml | DFlash ml + WorldDraft | WorldDraft gain (pub / ml) |
 |---|---|---|---|---|---|---|---|---|
 | en | 229 | 1.69x (3.96) | 1.78x (2.66) | 2.32x (3.94) | 2.29x (3.95) | 2.30x (3.96) | 2.29x (3.97) | -1.7% / -0.2% |
 | de | 232 | 1.63x (3.67) | 1.18x (1.65) | 1.73x (2.55) | 1.78x (2.66) | 1.78x (2.70) | 1.82x (2.79) | +3.1% / +2.3% |
@@ -48,7 +48,7 @@
 
 ## concurrency 32
 
-| lang | AR tok/s | AR draft 0.6B-ml | EAGLE-3 | DFlash public | DFlash public + LexDraft | DFlash ml | DFlash ml + LexDraft | LexDraft gain (pub / ml) |
+| lang | AR tok/s | AR draft 0.6B-ml | EAGLE-3 | DFlash public | DFlash public + WorldDraft | DFlash ml | DFlash ml + WorldDraft | WorldDraft gain (pub / ml) |
 |---|---|---|---|---|---|---|---|---|
 | en | 770 | 1.53x (3.94) | 1.56x (2.68) | 1.66x (3.10) | 1.63x (3.10) | 1.62x (3.10) | 1.60x (3.11) | -1.9% / -1.4% |
 | de | 786 | 1.48x (3.73) | 1.01x (1.66) | 1.31x (2.28) | 1.36x (2.37) | 1.32x (2.36) | 1.35x (2.44) | +3.8% / +2.0% |
@@ -69,7 +69,7 @@
 | sr-Latn | 610 | 1.40x (3.05) | 0.90x (1.35) | 0.86x (1.41) | 0.93x (1.58) | 0.96x (1.52) | 1.01x (1.71) | +9.1% / +5.8% |
 | hi-Latn | 554 | 1.12x (2.38) | 1.12x (1.63) | 0.98x (1.54) | 0.98x (1.53) | 0.97x (1.64) | 1.05x (1.65) | -0.0% / +7.9% |
 
-## Greedy losslessness: share of requests whose output is identical with and without LexDraft (same drafter)
+## Greedy losslessness: share of requests whose output is identical with and without WorldDraft (same drafter)
 
 | lang | public c=1 | public c=8 | public c=32 | ml c=1 | ml c=8 | ml c=32 | AR vs DFlash-ml+Lex c=1 |
 |---|---|---|---|---|---|---|---|

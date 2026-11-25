@@ -7,7 +7,7 @@ import unicodedata
 
 import regex
 
-ROOT = os.path.abspath(os.environ.get("LEXDRAFT_ROOT", os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
+ROOT = os.path.abspath(os.environ.get("WORLDDRAFT_ROOT") or os.environ.get("LEXDRAFT_ROOT") or os.path.join(os.path.dirname(os.path.abspath(__file__)), ".."))
 
 # code -> (name used in prompts, script tag, aya language name or None, mgsm code or None)
 LANGS = {

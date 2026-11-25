@@ -1,6 +1,6 @@
-"""Optimised-engine benchmark (vLLM nightly, V2 runner) with LexDraft inside the DFlash drafter (greedy).
+"""Optimised-engine benchmark (vLLM nightly, V2 runner) with WorldDraft inside the DFlash drafter (greedy).
 
-The DFlash speculator's sample_draft is replaced by: drafter logits -> Triton LexDraft walk (lex_triton.py) using the
+The DFlash speculator's sample_draft is replaced by: drafter logits -> Triton WorldDraft walk (lex_triton.py) using the
 request's last 12 accepted tokens (req_states.all_token_ids / total_len, written before propose()). Tables live in
 fixed GPU buffers, so the drafter's CUDA graphs stay valid; the language and lambda are switched per (task, lang) group.
 Same protocol as engine_bench.py: per group, chunks of `conc` requests; tokens/s, engine tau, generated token ids.
@@ -54,7 +54,7 @@ if args.lex_dir:
     MR.GPUModelRunner.sample_tokens = sample_tokens
     _cap = MR.GPUModelRunner.capture_model
 
-    def capture_model(self, *a, **kw):  # the drafter's CUDA graphs must be captured WITH the LexDraft path
+    def capture_model(self, *a, **kw):  # the drafter's CUDA graphs must be captured WITH the WorldDraft path
         LEX["rs"] = self.req_states
         return _cap(self, *a, **kw)
 

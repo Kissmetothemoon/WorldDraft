@@ -1,4 +1,4 @@
-"""Validate the Triton LexDraft walk against the python reference on real DFlash logits; time it.
+"""Validate the Triton WorldDraft walk against the python reference on real DFlash logits; time it.
 usage: test_lex_triton.py <target> <draft> <table_dir> <gen jsonl> <langs comma> <lam>"""
 import json
 import sys

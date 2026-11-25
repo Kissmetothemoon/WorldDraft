@@ -1,13 +1,13 @@
 # Research scripts
 
 Everything here is the analysis, mechanism-study, and baseline code behind the
-paper's figures and tables. None of it is needed to *use* LexDraft — see
-`../lexdraft/` and `../scripts/` for the method itself. They read/write under
-`$LEXDRAFT_ROOT/work/<tag>/` and share `common.py` through `PYTHONPATH=lexdraft`
+paper's figures and tables. None of it is needed to *use* WorldDraft — see
+`../worlddraft/` and `../scripts/` for the method itself. They read/write under
+`$WORLDDRAFT_ROOT/work/<tag>/` and share `common.py` through `PYTHONPATH=worlddraft`
 (honoured by `../scripts/env.sh`).
 
 ```bash
-export LEXDRAFT_ROOT=/path/to/workspace PYTHONPATH=$PWD/lexdraft
+export WORLDDRAFT_ROOT=/path/to/workspace PYTHONPATH=$PWD/worlddraft
 ```
 
 Scripts take positional arguments (see each docstring); the table below points at
@@ -17,7 +17,7 @@ the paper part each one produces.
 
 | script | what it does | paper |
 |---|---|---|
-| `build_prompts.py` *(in `lexdraft/`)* | language x task prompt grid from MGSM / Aya | §3 |
+| `build_prompts.py` *(in `worlddraft/`)* | language x task prompt grid from MGSM / Aya | §3 |
 | `build_train_prompts.py` | content-matched English vs multilingual distillation prompts | App. protocol |
 | `build_extra_prompts.py` | extra dialogue prompts for cells with few samples | — |
 | `build_official_prompts.py` | GSM8K / MATH-500 / HumanEval in the official DFlash format | App. protocol |
@@ -64,8 +64,8 @@ the paper part each one produces.
 | `train_dflash.py` | fine-tune a released DFlash drafter on target responses (`torchrun`) | §5 data dose, App. |
 | `train_ar_drafter.py` | distil the AR drafter (Qwen3-0.6B / Llama-3.2-1B) | §3 |
 | `train_unit.py` | unit-aligned block layout pilot (route M1) | — |
-| `engine_bench.py` *(in `lexdraft/`)* | stock vLLM throughput per drafter / concurrency | Table 1 |
-| `engine_profile.py` *(in `lexdraft/`)* | per-step cost decomposition of speculative decoding | §5 serving cost |
+| `engine_bench.py` *(in `worlddraft/`)* | stock vLLM throughput per drafter / concurrency | Table 1 |
+| `engine_profile.py` *(in `worlddraft/`)* | per-step cost decomposition of speculative decoding | §5 serving cost |
 | `prof_summary.py`, `prof_exact.py` | engine cost decomposition, untimed wall clock | App. cost |
 | `round3_summary.py` | the round-3 engine / HF / per-language summaries | Table 1 |
 | `tau_summary.py` | acceptance length per condition from real spec runs | App. |

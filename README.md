@@ -1,12 +1,19 @@
-# LexDraft
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/worlddraft-dark.svg">
+  <img src="assets/brand/worlddraft.svg" alt="WorldDraft" width="340">
+</picture>
 
 Official code for *What Slows Parallel Diffusion Drafters Across Languages?*
+
+[Explore measured speedups and inspect recorded draft blocks](https://kissmetothemoon.github.io/worlddraft-page/).
+
+In **WorldDraft**, an inserted lowercase **l** splits *word* and spells *world*. The dashed letter marks the break between token pieces and points to the unequal cost of fragmentation across languages.
 
 Parallel (block-diffusion) drafters such as DFlash propose a whole block of tokens
 in one pass, but their speedup collapses in languages whose words are split into
 many tokens: on Qwen3-8B the public DFlash checkpoint gives 2.80x in English and
 1.08x in Telugu. An autoregressive drafter sees the subword pieces it has already
-proposed; independent block positions see only the accepted prefix. LexDraft
+proposed; independent block positions see only the accepted prefix. WorldDraft
 closes that *within-word visibility gap* without touching the drafter or the
 target: a per-language table of word continuations, counted once from monolingual
 text, reranks and expands the block candidate pool so that the pieces of a word
@@ -58,8 +65,8 @@ stops at the word boundary.
 The paper used two environments.
 
 ```bash
-git clone https://github.com/Kissmetothemoon/LexDraft && cd LexDraft
-export LEXDRAFT_ROOT=/path/to/workspace   # holds data/ and models/, see data/README.md
+git clone https://github.com/Kissmetothemoon/WorldDraft && cd WorldDraft
+export WORLDDRAFT_ROOT=/path/to/workspace   # holds data/ and models/, see data/README.md
 
 # (a) offline pipeline: HF speculative loop, tables, distillation, analysis
 pip install -r requirements.txt           # torch 2.8.0, transformers 4.57.3, triton 3.4.0, ...
@@ -73,11 +80,11 @@ pip install --pre "vllm==0.31.1rc1.dev253+g7d0b4e57a.cu129" \
 Then point the entrypoints at both interpreters:
 
 ```bash
-export LEXDRAFT_PY=$VIRTUAL_ENV/bin/python          # env (a)
-export LEXDRAFT_ENGINE_PY=/path/to/env-b/bin/python # env (b)
+export WORLDDRAFT_PY=$VIRTUAL_ENV/bin/python          # env (a)
+export WORLDDRAFT_ENGINE_PY=/path/to/env-b/bin/python # env (b)
 ```
 
-`scripts/env.sh` also sets `PYTHONPATH=lexdraft`, so the flat scripts can
+`scripts/env.sh` also sets `PYTHONPATH=worlddraft`, so the flat scripts can
 `from common import ...` as in the original codebase.
 
 ## Quickstart
@@ -111,14 +118,14 @@ in that script's header, and shard each run into `<tag>_<i>.pkl` files.
 ## Repository map
 
 ```
-lexdraft/     the method and the main pipeline
+worlddraft/     the method and the main pipeline
   common.py         language table, chat templates, token classification
   wiki_lex_prep.py  monolingual Wikipedia text -> tokenised jsonl
   lex_tables.py     counted tables -> GPU-ready .npz per language
   lex_triton.py     Triton walk (LexTables, lex_walk, lex_walk_ref)
   sd_lex.py         HF batch-1 speculative loop, greedy + sampling, lossless
   sd_lib.py         greedy spec loops used for wall-clock (DFlash, AR-draft)
-  engine_lex.py     vLLM benchmark with LexDraft inside the DFlash proposer
+  engine_lex.py     vLLM benchmark with WorldDraft inside the DFlash proposer
   engine_bench.py   stock vLLM benchmark (baselines)
   engine_profile.py per-step engine cost decomposition
   gen_vllm.py       target trajectories with vLLM
@@ -141,7 +148,7 @@ prompts; speedup relative to plain target decoding in the same engine). Methods:
 `ar_draft`, `eagle3`, `dflash_pub`, `dflash_pub_lex`, `dflash_ml`, `dflash_ml_lex`.
 Concurrency 1, selected cells:
 
-| language | AR draft | DFlash public | + LexDraft | DFlash ml | + LexDraft |
+| language | AR draft | DFlash public | + WorldDraft | DFlash ml | + WorldDraft |
 |---|---|---|---|---|---|
 | en | 1.90x | 2.80x | 2.79x | 2.85x | 2.83x |
 | th | 2.14x | 1.34x | 1.54x | 1.75x | 1.97x |
@@ -150,7 +157,7 @@ Concurrency 1, selected cells:
 | am | 1.98x | 1.32x | 1.89x | 2.01x | 2.66x |
 
 Losslessness: in the batch-1 loop all 2,106 paired requests are token-identical
-with and without LexDraft. In vLLM, bf16 near-tie flips make some requests differ
+with and without WorldDraft. In vLLM, bf16 near-tie flips make some requests differ
 under different batch/verification shapes — an engine effect that also appears
 between plain target decoding and multilingual DFlash — while MGSM accuracy and
 chrF stay within noise (`results/main_quality.md`).
@@ -175,12 +182,12 @@ GSM8K, HumanEval — see `data/README.md`.
 ## Citation
 
 ```bibtex
-@article{feng2026lextdraft,
+@article{feng2026worlddraft,
   title   = {What Slows Parallel Diffusion Drafters Across Languages?},
   author  = {Yuannuo Feng and Wenshuai Yao and Yizhe Chen and Ngai Wong and Wenyong Zhou and Wang Kang},
   year    = {2026},
-  note    = {Under review. Code: \url{https://github.com/Kissmetothemoon/LexDraft}},
-  url     = {https://kissmetothemoon.github.io/lexdraft-page/}
+  note    = {Under review. Code: \url{https://github.com/Kissmetothemoon/WorldDraft}},
+  url     = {https://kissmetothemoon.github.io/worlddraft-page/}
 }
 ```
 

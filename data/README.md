@@ -1,15 +1,15 @@
 # Data and checkpoints
 
 Nothing large is committed. Everything below is downloaded or regenerated with
-`LEXDRAFT_ROOT` pointing at a working directory (default: the parent of this
-repository, so the layout is `$LEXDRAFT_ROOT/{code,work,data,models,state}` — the
-scripts write to `$LEXDRAFT_ROOT/work` and `$LEXDRAFT_ROOT/state`).
+`WORLDDRAFT_ROOT` pointing at a working directory (default: the parent of this
+repository, so the layout is `$WORLDDRAFT_ROOT/{code,work,data,models,state}` — the
+scripts write to `$WORLDDRAFT_ROOT/work` and `$WORLDDRAFT_ROOT/state`).
 
 ```bash
-export LEXDRAFT_ROOT=/path/to/workspace   # must contain data/ and models/ (or symlinks)
+export WORLDDRAFT_ROOT=/path/to/workspace   # must contain data/ and models/ (or symlinks)
 ```
 
-## Evaluation data (`$LEXDRAFT_ROOT/data/`)
+## Evaluation data (`$WORLDDRAFT_ROOT/data/`)
 
 | path | source | licence |
 |---|---|---|
@@ -26,14 +26,14 @@ the paper used (`build_clean_prompts.py` produces them from `prompts_eval.jsonl`
 Wikipedia text for the prior comes from `wikimedia/wikipedia`, `20231101.<lang>`,
 streamed:
 ```bash
-python lexdraft/wiki_lex_prep.py <target-tokenizer-or-model> $LEXDRAFT_ROOT/work/wiki 10000000 te,am,bn,th,hi
+python worlddraft/wiki_lex_prep.py <target-tokenizer-or-model> $WORLDDRAFT_ROOT/work/wiki 10000000 te,am,bn,th,hi
 # writes work/wiki/wiki_<lang>.jsonl, then:
-python lexdraft/lex_tables.py <target-tokenizer-or-model> "$LEXDRAFT_ROOT/work/wiki/wiki_*.jsonl" $LEXDRAFT_ROOT/work/lextab 1e7
+python worlddraft/lex_tables.py <target-tokenizer-or-model> "$WORLDDRAFT_ROOT/work/wiki/wiki_*.jsonl" $WORLDDRAFT_ROOT/work/lextab 1e7
 ```
 `lex_tables.py` produces `work/lextab/<lang>.npz` (~440 MB for 18 languages at 10M
 tokens each; Japanese is the largest). These were **not** shipped — rebuild them.
 
-## Model checkpoints (`$LEXDRAFT_ROOT/models/`)
+## Model checkpoints (`$WORLDDRAFT_ROOT/models/`)
 
 | role | checkpoint | notes |
 |---|---|---|
@@ -50,7 +50,7 @@ export HF_ENDPOINT=https://hf-mirror.com   # optional; unset to use huggingface.
 python - <<'PY'
 import os
 from huggingface_hub import snapshot_download
-root = os.environ["LEXDRAFT_ROOT"]
+root = os.environ["WORLDDRAFT_ROOT"]
 for repo in ["Qwen/Qwen3-8B", "z-lab/Qwen3-8B-DFlash-b16"]:
     snapshot_download(repo, local_dir=f"{root}/models/{repo.split('/')[-1]}")
 PY

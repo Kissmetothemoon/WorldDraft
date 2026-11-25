@@ -6,4 +6,4 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/env.sh"
 GLOB="${1:-$WORK/wiki/wiki_*.jsonl}"
 MAXT="${2:-1e7}"
-$PY lexdraft/lex_tables.py "$TARGET" "$GLOB" "$PRIOR_DIR" "$MAXT"
+$PY worlddraft/lex_tables.py "$TARGET" "$GLOB" "$PRIOR_DIR" "$MAXT"

@@ -6,4 +6,4 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/env.sh"
 LANGS="${1:-te,am,bn,th,hi}"
 TOKENS="${2:-1e7}"
-$PY lexdraft/wiki_lex_prep.py "$TARGET" "$WORK/wiki" "$TOKENS" "$LANGS"
+$PY worlddraft/wiki_lex_prep.py "$TARGET" "$WORK/wiki" "$TOKENS" "$LANGS"

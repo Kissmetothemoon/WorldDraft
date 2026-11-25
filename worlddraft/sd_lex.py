@@ -240,7 +240,7 @@ for r in jload(args.prompts):
 sel = shard([r for k in sorted(groups) for r in groups[k][: args.per_group]], args.shard, args.nshard)
 temps = [float(x) for x in args.temps.split(",")]
 if args.mode == "lossless":
-    # empirical check that speculative sampling with the LexDraft proposal leaves the output distribution unchanged
+    # empirical check that speculative sampling with the WorldDraft proposal leaves the output distribution unchanged
     rep = []
     for i, r in enumerate(sel):
         pid = torch.tensor([chat_ids(tok, build_messages(r["task"], r["lang"], r["text"]))], device=dev)

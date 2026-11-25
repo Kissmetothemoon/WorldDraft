@@ -1,8 +1,8 @@
 """Aggregate stage-0/1 results into tables and a gate report.
 
 usage: analyze.py --tag q8 --tokenizer <target path> [--eagle-model <path>]
-reads  $LEXDRAFT_ROOT/work/<tag>/{tf_*.pkl,cand_*.pkl,eagle_k7_*.pkl,speed_*.pkl,val.pkl}
-writes $LEXDRAFT_ROOT/work/<tag>/report/{report.md,*.csv,token_records.npz}
+reads  $WORLDDRAFT_ROOT/work/<tag>/{tf_*.pkl,cand_*.pkl,eagle_k7_*.pkl,speed_*.pkl,val.pkl}
+writes $WORLDDRAFT_ROOT/work/<tag>/report/{report.md,*.csv,token_records.npz}
 """
 import argparse
 import glob

@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Step 6: vLLM throughput with LexDraft inside the DFlash drafter.
+# Step 6: vLLM throughput with WorldDraft inside the DFlash drafter.
 # --lams is a per-language lambda list ("te:0.5,am:1.5,..."); missing languages run with the prior off.
 # Repeat with --lex-dir "" and the same --method for the no-prior reference (that is how
 # results/main_table.md was produced: ar / dpub / dpub_lex / dml / dml_lex at conc 1, 8, 32).
@@ -11,7 +11,7 @@ set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/env.sh"
 LAMS="${1:?e.g. te:0.5,am:1.5,bn:0.75}"
 TAG="${2:?output tag, e.g. dml_lex}"
-$PY_ENGINE lexdraft/engine_lex.py --model "$TARGET" --method dflash \
+$PY_ENGINE worlddraft/engine_lex.py --model "$TARGET" --method dflash \
     --spec-model "$DRAFT_ML" --k 15 --verify-sched "1-4:15,5-16:7,17-64:3" \
     --lex-dir "$PRIOR_DIR" --lams "$LAMS" \
     --prompts "$WORK/prompts_eval_clean_q8.jsonl" \

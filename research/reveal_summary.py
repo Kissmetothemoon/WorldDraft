@@ -1,6 +1,6 @@
 """Summarise the same-anchor reveal intervention (I0 / reveal word start / reveal previous token / reveal own start).
 
-usage: reveal_summary.py <tag> ; reads $LEXDRAFT_ROOT/work/<tag>/reveal_*.pkl
+usage: reveal_summary.py <tag> ; reads $WORLDDRAFT_ROOT/work/<tag>/reveal_*.pkl
 Per in-word token record: (k, j, m, c0, c_start, c_prev, c_self, start_ok_I0, prev_ok_I0, q_start, bpiece)
 """
 import glob

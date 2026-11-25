@@ -1,4 +1,4 @@
-"""Build GPU-ready LexDraft tables per language from monolingual text (same statistics as pilot_lex.py / sd_lex.py).
+"""Build GPU-ready WorldDraft tables per language from monolingual text (same statistics as pilot_lex.py / sd_lex.py).
 
 usage: lex_tables.py <tokenizer> "<glob of wiki_<lang>.jsonl>" <out_dir> [max_tokens_per_lang]
 per language writes <out_dir>/<lang>.npz with

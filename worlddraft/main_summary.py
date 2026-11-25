@@ -1,5 +1,5 @@
 """Paper main table from engine_lex.py outputs: speedup vs AR (same engine, pooled over tasks, token-weighted), engine tau,
-and greedy losslessness (identical outputs, LexDraft vs the same drafter without it).
+and greedy losslessness (identical outputs, WorldDraft vs the same drafter without it).
 usage: main_summary.py <dir> <out.md>"""
 import glob, pickle, sys
 from collections import defaultdict
@@ -7,8 +7,8 @@ import numpy as np
 D, outp = sys.argv[1], sys.argv[2]
 LANGS = ["en", "de", "fr", "es", "ru", "zh", "ja", "ko", "ar", "th", "sw", "hi", "bn", "te", "am", "sr-Cyrl", "sr-Latn", "hi-Latn"]
 NAMES = ["ar", "draft", "eagle3", "dpub", "dpub_lex", "dml", "dml_lex"]
-LAB = {"draft": "AR draft 0.6B-ml", "eagle3": "EAGLE-3", "dpub": "DFlash public", "dpub_lex": "DFlash public + LexDraft",
-       "dml": "DFlash ml", "dml_lex": "DFlash ml + LexDraft"}
+LAB = {"draft": "AR draft 0.6B-ml", "eagle3": "EAGLE-3", "dpub": "DFlash public", "dpub_lex": "DFlash public + WorldDraft",
+       "dml": "DFlash ml", "dml_lex": "DFlash ml + WorldDraft"}
 R = defaultdict(dict)
 for n in NAMES:
     for f in glob.glob(f"{D}/{n}_[0-9].pkl"):
@@ -22,7 +22,7 @@ def agg(n, l, c):
     return tok / tm, (np.mean(taus) if taus else np.nan)
 L = ["# Main table: vLLM nightly, Qwen3-8B, one NVIDIA L20, clean prompts, greedy; speedup vs AR in the same engine (tau)\n"]
 for c in (1, 8, 32):
-    L += [f"## concurrency {c}\n", "| lang | AR tok/s | " + " | ".join(LAB[n] for n in NAMES[1:]) + " | LexDraft gain (pub / ml) |",
+    L += [f"## concurrency {c}\n", "| lang | AR tok/s | " + " | ".join(LAB[n] for n in NAMES[1:]) + " | WorldDraft gain (pub / ml) |",
           "|---|---|" + "---|" * (len(NAMES) - 1) + "---|"]
     for l in LANGS:
         a = agg("ar", l, c)
@@ -34,7 +34,7 @@ for c in (1, 8, 32):
             cells.append(f"{m[0]/a[0]:.2f}x ({m[1]:.2f})" if m else "-")
         L.append(f"| {l} | {a[0]:.0f} | " + " | ".join(cells) + f" | {sp['dpub_lex']/sp['dpub']-1:+.1%} / {sp['dml_lex']/sp['dml']-1:+.1%} |")
     L.append("")
-L += ["## Greedy losslessness: share of requests whose output is identical with and without LexDraft (same drafter)\n",
+L += ["## Greedy losslessness: share of requests whose output is identical with and without WorldDraft (same drafter)\n",
       "| lang | public c=1 | public c=8 | public c=32 | ml c=1 | ml c=8 | ml c=32 | AR vs DFlash-ml+Lex c=1 |", "|---|---|---|---|---|---|---|---|"]
 def ident(a, b, l, c):
     ks = [k for k in R[a] if k[1] == l and k[2] == c and k in R[b]]

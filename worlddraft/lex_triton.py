@@ -1,4 +1,4 @@
-"""LexDraft walk on GPU: one Triton program per request walks the block positions left to right.
+"""WorldDraft walk on GPU: one Triton program per request walks the block positions left to right.
 
 At block position s the current word (accepted history + tokens drafted so far in this block) gives an in-word context
 (longest of n = 3, 2, 1 found in the table). Candidates = drafter top-16 + the context's top-4 continuations;

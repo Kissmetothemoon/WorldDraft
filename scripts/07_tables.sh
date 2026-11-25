@@ -7,6 +7,6 @@
 # Usage: ./scripts/07_tables.sh
 set -euo pipefail
 source "$(dirname "${BASH_SOURCE[0]}")/env.sh"
-$PY lexdraft/main_summary.py "$WORK/engine" "$WORK/main_table.md"
-$PY lexdraft/main_quality.py "$WORK/engine" "$TARGET" "$WORK/main_quality.md"
+$PY worlddraft/main_summary.py "$WORK/engine" "$WORK/main_table.md"
+$PY worlddraft/main_quality.py "$WORK/engine" "$TARGET" "$WORK/main_quality.md"
 echo "done: $WORK/main_table.md, $WORK/main_quality.md"

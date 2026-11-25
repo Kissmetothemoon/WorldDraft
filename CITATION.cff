@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-message: "If you use LexDraft, please cite the paper below."
+message: "If you use WorldDraft, please cite the paper below."
 title: "What Slows Parallel Diffusion Drafters Across Languages?"
 authors:
   - family-names: Feng
@@ -23,10 +23,10 @@ authors:
 year: 2026
 type: software
 license: MIT
-repository-code: "https://github.com/Kissmetothemoon/LexDraft"
-url: "https://kissmetothemoon.github.io/lexdraft-page/"
+repository-code: "https://github.com/Kissmetothemoon/WorldDraft"
+url: "https://kissmetothemoon.github.io/worlddraft-page/"
 abstract: >-
-  LexDraft adds a training-free, word-bounded continuation prior counted from
+  WorldDraft adds a training-free, word-bounded continuation prior counted from
   monolingual text, which reranks and expands block-diffusion (DFlash) drafter
   candidates before target verification.
 keywords:

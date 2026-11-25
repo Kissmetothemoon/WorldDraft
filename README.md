@@ -3,11 +3,11 @@
   <img src="assets/brand/worlddraft.svg" alt="WorldDraft" width="340">
 </picture>
 
+**Why WorldDraft?** An extra *l* turns *word* into *world*. The two cuts in the teal *l* evoke a word split into tokens and a world where the same drafting method can speed up one language and slow down another.
+
 Official code for *What Slows Parallel Diffusion Drafters Across Languages?*
 
 [Explore measured speedups and inspect recorded draft blocks](https://kissmetothemoon.github.io/worlddraft-page/).
-
-In **WorldDraft**, an inserted lowercase **l** splits *word* and spells *world*. The dashed letter marks the break between token pieces and points to the unequal cost of fragmentation across languages.
 
 Parallel (block-diffusion) drafters such as DFlash propose a whole block of tokens
 in one pass, but their speedup collapses in languages whose words are split into

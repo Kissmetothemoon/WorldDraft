@@ -1,13 +1,22 @@
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/worlddraft-dark.svg">
-  <img src="assets/brand/worlddraft.svg" alt="WorldDraft" width="340">
-</picture>
+<p align="center">
+  <a href="https://kissmetothemoon.github.io/worlddraft-page/">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="assets/brand/worlddraft-dark.svg">
+      <img src="assets/brand/worlddraft.svg" alt="WorldDraft" width="308">
+    </picture>
+  </a>
+</p>
+
+<h3 align="center">What Slows Parallel Diffusion Drafters Across Languages?</h3>
+
+<p align="center">
+  <a href="https://kissmetothemoon.github.io/worlddraft-page/#paper"><strong>Paper details</strong></a> &nbsp;·&nbsp;
+  <a href="https://kissmetothemoon.github.io/worlddraft-page/"><strong>Project page</strong></a> &nbsp;·&nbsp;
+  <a href="https://kissmetothemoon.github.io/worlddraft-page/#block-demo"><strong>Interactive demo</strong></a> &nbsp;·&nbsp;
+  <a href="#install"><strong>Quick start</strong></a>
+</p>
 
 **Why WorldDraft?** An extra *l* turns *word* into *world*. The two cuts in the teal *l* evoke a word split into tokens and a world where the same drafting method can speed up one language and slow down another.
-
-Official code for *What Slows Parallel Diffusion Drafters Across Languages?*
-
-[Explore measured speedups and inspect recorded draft blocks](https://kissmetothemoon.github.io/worlddraft-page/).
 
 Parallel (block-diffusion) drafters such as DFlash propose a whole block of tokens
 in one pass, but their speedup collapses in languages whose words are split into
@@ -18,6 +27,10 @@ closes that *within-word visibility gap* without touching the drafter or the
 target: a per-language table of word continuations, counted once from monolingual
 text, reranks and expands the block candidate pool so that the pieces of a word
 are chosen consistently with each other.
+
+<p align="center">
+  <a href="https://kissmetothemoon.github.io/worlddraft-page/#block-demo"><img src="assets/worlddraft-method.png" alt="Offline word-continuation counts guide a parallel draft before target verification." width="820"></a>
+</p>
 
 - **Training-free.** No gradients, no drafter retraining. One extra Triton kernel.
 - **Cheap.** The table is built from 10M Wikipedia tokens per language; 2M already
